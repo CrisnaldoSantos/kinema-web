@@ -1,0 +1,6 @@
+body {    
+    background-position: 10%;
+    background-image: url("../../../img/fundo-gradiente.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
