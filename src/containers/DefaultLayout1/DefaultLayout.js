@@ -69,7 +69,7 @@ class DefaultLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/dashboard" />
+                  <Redirect from="/" to={localStorage.getItem('kinema-token')?'/filmesdesejados/list':'/login'} />
                 </Switch>
               </Suspense>
             </Container>
