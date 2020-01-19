@@ -61,18 +61,18 @@ class Login extends Component {
       <div className="app flex-row align-items-center">
         <Container>
           <Row className="justify-content-center">
-            <Col md="6">
+            <Col md="8" sm='12' lg='6' xl='5'>
               <CardGroup>
-                <Card className="mx-4">
+                <Card >
                   <CardBody>
                     <Form onSubmit={this.handleSubmit} >
                       <Row>
-                        <Col lg='6' sm='12'>
+                        <Col lg='6' sm='6'>
                           <h1>Login</h1>
                           <p className="text-muted">Entre no app com suas credenciais</p>
                         </Col>
-                        <Col lg='6' sm='12'>
-                          <img  src={require("../../../img/Logo Kinema.png")} alt="logo" width="50%"/>
+                        <Col lg='6' sm='6'>
+                          <img  src={require("../../../img/Logo Kinema.png")} alt="logo" width="100px"/>
                         </Col>
                       </Row>
                       <InputGroup className="mb-3">
