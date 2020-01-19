@@ -96,14 +96,14 @@ export default class FilmesAssistidosList extends Component {
             </Row>
           <Row className="pt-2">
             {this.state.movies.map(movie => (
-                <Col xs='12' md='6' lg='4'>
+                <Col xs='12' sm='6' md='6' lg='4'>
                 <Card key={movie.id}>
                     <CardHeader>
                         <Row>
-                            <Col xs='10' md='9'>
+                            <Col xs='8' sm='9' md='9'>
                                 <h5> <i class="fa fa-film" aria-hidden="true"></i> Título: {movie.title}</h5>
                             </Col>
-                            <Col xs='2' md='3'>
+                            <Col xs='4' sm='3' md='3'>
                                 <Button block color="danger" onClick={(e) => this.deleteMovie(e,movie.id)}>X</Button>
                             </Col>
                         </Row>
@@ -113,10 +113,10 @@ export default class FilmesAssistidosList extends Component {
                     </CardBody>
                     <CardFooter>
                     <Row>
-                        <Col xs='6' md='6'>
+                        <Col xs='12' md='6' sm='6' className="mt-1">
                             <Button block color="success"><i class="fa fa-check" aria-hidden="true"/> Assistido</Button>
                         </Col>
-                        <Col xs='6' md='6'>
+                        <Col xs='12' md='6' sm='6' className="mt-1">
                             <Button block color='warning'><i class="fa fa-pencil-square-o" aria-hidden="true"/> Editar</Button>
                         </Col>
                     </Row>

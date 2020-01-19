@@ -22,7 +22,7 @@ const ButtonDropdowns = React.lazy(() => import('./views/Buttons/ButtonDropdowns
 const ButtonGroups = React.lazy(() => import('./views/Buttons/ButtonGroups'));
 const Buttons = React.lazy(() => import('./views/Buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/Charts'));
-const Dashboard = React.lazy(() => import('./views/Dashboard'));
+//const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const CoreUIIcons = React.lazy(() => import('./views/Icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Icons/Flags'));
 const FontAwesome = React.lazy(() => import('./views/Icons/FontAwesome'));
@@ -41,10 +41,12 @@ const FilmesDesejadosForm = React.lazy(() => import('./views/Pages/Filmes deseja
 const FilmesDesejadosList = React.lazy(() => import('./views/Pages/Filmes desejados/List'));
 const FilmesDesejadosFormEdit = React.lazy(() => import('./views/Pages/Filmes desejados/FormEdit'));
 
+const LoginPage = React.lazy(() => import('./views/Pages/Login/Login'));
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/dashboard', name: 'Dashboard', component: LoginPage },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
@@ -85,6 +87,7 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 
+  { path: '/login', name: 'Filmes desejados form', component: LoginPage },
   { path: '/filmesdesejados/form', name: 'Filmes desejados form', component: FilmesDesejadosForm },
   { path: '/filmesdesejados/list', exact: true,  name: 'Filmes desejados list', component: FilmesDesejadosList },
   { path: '/filmesdesejados/edit/:id', exact: true, name: 'Filmes desejados edit', component: FilmesDesejadosFormEdit },
