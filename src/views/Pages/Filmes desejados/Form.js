@@ -127,9 +127,9 @@ export default class FilmesAssistidosForm extends Component {
                         <Col lg="2" md="6" sm="12" xs="12" className="p-1">
                           <Button color="success" block onClick={this.handleSubmit}>Cadastrar</Button>
                         </Col>
-                        <Col lg="2" md="6" sm="12" xs="12" className="p-1">
+                        {/*<Col lg="2" md="6" sm="12" xs="12" className="p-1">
                           <Button color="danger" block onClick={sessionExpired}>Cancelar</Button>
-                        </Col>
+                            </Col>*/}
                       </Row>
                     </Form>
                   </CardBody>

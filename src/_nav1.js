@@ -32,7 +32,10 @@ export default {
         },
       ],
     },
-    
-    
+    {
+      name: 'Filmes Assistidos',
+      url: '/filmesassistidos/list',
+      icon: 'icon-layers',
+    },
   ],
 };

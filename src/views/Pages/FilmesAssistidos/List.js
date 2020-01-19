@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {Label, Button, Card, CardBody, Col, Container, 
-    Row, CardHeader, CardFooter } from 'reactstrap';
+    Row, CardHeader, CardFooter} from 'reactstrap';
 import api from '../../../services/api';
 import header from '../../../services/header';
 import alertSW from '../../../util/sweetAlerts';
-import {NavLink} from 'react-router-dom'
+//import {NavLink} from 'react-router-dom'
 
 
-export default class FilmesDesejadosList extends Component {
+export default class FilmesAssistidosList extends Component {
 
     constructor(props) {
         super(props);
@@ -23,7 +23,7 @@ export default class FilmesDesejadosList extends Component {
       }
 
     loadMovies = async (page=1) => {
-        const response = await api.get(`/movies/page/${page}`,header);
+        const response = await api.get(`/watchedmovies/page/${page}`,header);
         let moviesArray = response.data.data;
         moviesArray.sort(function(a,b){
             if (a.id > b.id){
@@ -94,15 +94,15 @@ export default class FilmesDesejadosList extends Component {
             debut_date,
             sinopse,
             genre_id,
-            watched_flag:true
+            watched_flag:false
         }
         console.log(data);
         await api.put(`/movies/${id}`,data,header).then(()=>{
             //this.resetState();
             alertSW.fire({
               icon: 'success',
-              title: `Filme assistido!`,
-              text: `Filme ${title} foi marcado como assistido, e foi removido da sua lista de desejos!`
+              title: `De volta para lista de desejos!`,
+              text: `Filme ${title} foi retornado para a lista de desejos, e foi removido da sua lista de assistidos!`
             });
         })
         this.loadMovies();
@@ -149,13 +149,8 @@ export default class FilmesDesejadosList extends Component {
                     </CardBody>
                     <CardFooter>
                     <Row>
-                        <Col xs='12' md='6' sm='12' className="mt-1">
-                            <Button block color="success" onClick={(e) => this.watchedMovie(movie.id)}><i className="fa fa-check" aria-hidden="true"/> Assistido</Button>
-                        </Col>
-                        <Col xs='12' md='6' sm='12' className="mt-1">
-                            <NavLink to={`/filmesdesejados/edit/${movie.id}`}>
-                            <Button block color='warning'><i className="fa fa-pencil-square-o" aria-hidden="true"/> Editar</Button>
-                            </NavLink>
+                        <Col xs='12' md='12' sm='12' className="mt-1">
+                            <Button block color="warning" onClick={(e) => this.watchedMovie(movie.id)}><i className="fa fa-undo" aria-hidden="true"/> Retornar para lista de desejos</Button>
                         </Col>
                     </Row>
                     </CardFooter>

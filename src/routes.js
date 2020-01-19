@@ -41,6 +41,9 @@ const FilmesDesejadosForm = React.lazy(() => import('./views/Pages/Filmes deseja
 const FilmesDesejadosList = React.lazy(() => import('./views/Pages/Filmes desejados/List'));
 const FilmesDesejadosFormEdit = React.lazy(() => import('./views/Pages/Filmes desejados/FormEdit'));
 
+//filmes assistidos
+const FilmesAssistidosList = React.lazy(() => import('./views/Pages/FilmesAssistidos/List'));
+
 const LoginPage = React.lazy(() => import('./views/Pages/Login/Login'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
@@ -91,7 +94,7 @@ const routes = [
   { path: '/filmesdesejados/form', name: 'Filmes desejados form', component: FilmesDesejadosForm },
   { path: '/filmesdesejados/list', exact: true,  name: 'Filmes desejados list', component: FilmesDesejadosList },
   { path: '/filmesdesejados/edit/:id', exact: true, name: 'Filmes desejados edit', component: FilmesDesejadosFormEdit },
-
+  { path: '/filmesassistidos/list', exact: true,  name: 'Filmes assistidos list', component: FilmesAssistidosList },
 ];
 
 export default routes;
