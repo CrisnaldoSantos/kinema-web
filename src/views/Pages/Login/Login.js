@@ -67,12 +67,12 @@ class Login extends Component {
                   <CardBody>
                     <Form onSubmit={this.handleSubmit} >
                       <Row>
-                        <Col className="lg-6">
+                        <Col lg='6' sm='12'>
                           <h1>Login</h1>
                           <p className="text-muted">Entre no app com suas credenciais</p>
                         </Col>
-                        <Col className="lg-6">
-                          <img src={require("../../../img/Logo Kinema.png")} alt="logo" width="150px"/>
+                        <Col lg='6' sm='12'>
+                          <img  src={require("../../../img/Logo Kinema.png")} alt="logo" width="50%"/>
                         </Col>
                       </Row>
                       <InputGroup className="mb-3">

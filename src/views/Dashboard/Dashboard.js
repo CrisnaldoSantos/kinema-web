@@ -1,4 +1,5 @@
 import React, { Component, lazy, Suspense } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Bar, Line } from 'react-chartjs-2';
 import {
   Badge,
@@ -483,6 +484,7 @@ class Dashboard extends Component {
 
     return (
       <div className="animated fadeIn">
+        <Redirect from="/" to='/login' />
         <Row>
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-info">
