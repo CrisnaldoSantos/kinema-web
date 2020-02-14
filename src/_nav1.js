@@ -1,14 +1,8 @@
 export default {
   items: [
     {
-      name: 'Home',
-      url: '/dashboard',
-      icon: 'icon-list',
-      
-    },
-    {
       title: true,
-      name: 'Components',
+      name: 'Menu',
       wrapper: {
         element: '',
         attributes: {},

@@ -64,7 +64,7 @@ export default class FilmesAssistidosList extends Component {
     };
 
     deleteMovie = async (e,id)=>{
-        
+        await api.delete(`/watched/${id}`,header);
         await api.delete(`/movies/${id}`,header)
             .then(()=>{
                 this.loadMovies();
@@ -82,6 +82,32 @@ export default class FilmesAssistidosList extends Component {
                     text: ''
                 });
             })
+
+    }
+
+    feedback = async(id) =>{
+        await api.get(`/watched/${id}`,header).then((response)=>{
+            let movieFilter = this.state.movies.filter(movie=>{
+                return movie.id === id;
+            });
+            const {title} = movieFilter[0];
+            alertSW.fire({
+                imageUrl: require(`../../../img/${response.data.ratting.id}.png`),
+                imageWidth: 70,
+                imageHeight: 70,
+                imageAlt: 'Face ratting',
+                title: "Você classificou:  "+title+ " como: "+response.data.ratting.description,
+                text: response.data.watched.observations
+            });
+        }).catch((err)=>{
+            console.log(err);
+                alertSW.fire({
+                    icon: 'error',
+                    title: 'Falha ao excluir o filme',
+                    text: ''
+                });
+        });
+        
     }
 
     watchedMovie = async (id_movie) =>{
@@ -97,6 +123,7 @@ export default class FilmesAssistidosList extends Component {
             watched_flag:false
         }
         console.log(data);
+        await api.delete(`/watched/${id}`,header);
         await api.put(`/movies/${id}`,data,header).then(()=>{
             //this.resetState();
             alertSW.fire({
@@ -136,7 +163,7 @@ export default class FilmesAssistidosList extends Component {
                     <CardHeader>
                         <Row>
                             <Col xs='8' sm='9' md='9'>
-                                <h5> <i className="fa fa-film" aria-hidden="true"></i> Título: {movie.title}</h5>
+                                <h5> <i className="fa fa-film" aria-hidden="true"></i> {movie.title}</h5>
                             </Col>
                             <Col xs='4' sm='3' md='3'>
                                 <Button block color="danger" onClick={(e) => this.deleteMovie(e,movie.id)}>X</Button>
@@ -150,7 +177,12 @@ export default class FilmesAssistidosList extends Component {
                     <CardFooter>
                     <Row>
                         <Col xs='12' md='12' sm='12' className="mt-1">
-                            <Button block color="warning" onClick={(e) => this.watchedMovie(movie.id)}><i className="fa fa-undo" aria-hidden="true"/> Retornar para lista de desejos</Button>
+            <Button  color="warning" block  onClick={(e) => this.watchedMovie(movie.id)}><i className="fa fa-undo" aria-hidden="true"/>{' '}Retornar filme para lista de desejos</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs='12' md='12' sm='12' className="mt-1">
+                            <Button block  color="secondary" onClick={(e) => this.feedback(movie.id)}><i className="fa fa-commenting-o" aria-hidden="true"/>{' '}Exibir meu Feedback</Button>
                         </Col>
                     </Row>
                     </CardFooter>

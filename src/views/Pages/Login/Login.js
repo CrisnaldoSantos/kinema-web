@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
+  InputGroup, InputGroupAddon, InputGroupText, Row, ModalHeader, ModalBody, Modal, ModalFooter
+ } from 'reactstrap';
 import api from "../../../services/api";
 import "./sty.css";
+import header from '../../../services/header';
 import alertSW from '../../../util/sweetAlerts';
+
 class Login extends Component {
 
   constructor(props) {
@@ -11,7 +15,9 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      carregando: false
+      emailRecovery:"",
+      carregando: false,
+      modal:false,
     };
     this.handleChange=this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -54,11 +60,80 @@ class Login extends Component {
       carregando:false
     })
 
-	}
+  }
+  
+  btSolicitar=()=>{
+    this.setState({
+      modal:true
+    })
+  }
+
+  resetState=()=>{
+    this.setState({
+      emailRecovery:""
+    })
+  }
+
+  btCancel=()=>{
+    this.setState({
+      modal:false
+    })
+  }
+
+  solicitarSenha=async()=>{
+    this.setState({carregando:true})
+    const data = {
+      email: this.state.emailRecovery,
+    }
+    await api.post('/forgotpassword',data,header).then((response)=>{
+      this.resetState();
+      console.log(response);
+      this.setState({carregando:false})
+      alertSW.fire({
+        icon: 'success',
+        title: 'Uma nova senha foi enviada para o email',
+        text: '',
+        onClose: () => {
+          this.btCancel()
+        }
+      });
+      }).catch((err)=>{
+        console.log(err);
+        alertSW.fire({
+          icon: 'error',
+          title: 'Não foi possível solicitar uma nova senha',
+          text: '',
+          onClose: () => {
+            this.btCancel()
+          }
+        });
+        this.resetState();
+        this.setState({carregando:false});
+      })
+  }
 
   render() {
     return (
       <div className="app flex-row align-items-center">
+        <Modal isOpen={this.state.modal} className="modal-dialog modal-dialog-centered">
+          <ModalHeader className="justify-content-center">Solicitar nova senha</ModalHeader>
+          <ModalBody  className="justify-content-center">
+            Informe o e-mail cadastrado ao qual deseja solicitar uma nova senha:
+            
+          <InputGroup className="mb-3">
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>                            
+              <i class="fa fa-envelope-o" aria-hidden="true"/>
+              </InputGroupText>
+              </InputGroupAddon>
+            <Input type="text" placeholder="E-mail" autoComplete="email" value={this.state.emailRecovery} onChange={(e) => this.handleChange(e, 'emailRecovery')} />
+          </InputGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" disabled={this.state.carregando} onClick={this.solicitarSenha}>{this.state.carregando?"Solicitando":"Solicitar"}</Button>{' '}
+            <Button color="danger" disabled={this.state.carregando} onClick={this.btCancel}>Cancelar</Button>
+          </ModalFooter>
+        </Modal>
         <Container>
           <Row className="justify-content-center">
             <Col md="8" sm='12' lg='6' xl='5'>
@@ -103,7 +178,7 @@ class Login extends Component {
                       </Row>
                       <Row>
                         <Col xs="12" className="text-left">
-                          <Button color="link" className="px-0" disabled={this.state.carregando}>Esqueceu sua senha?</Button>
+                          <Button color="link" className="px-0" disabled={this.state.carregando} onClick={this.btSolicitar}>Esqueceu sua senha?</Button>
                         </Col>
                       </Row>
                     </Form>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Button, Card, CardBody, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row} from 'reactstrap';
 import api from "../../../services/api";
 import alertSW from '../../../util/sweetAlerts';
 import './sty.css';
@@ -21,6 +21,10 @@ class Register extends Component {
     this.setState({[key]:e.target.value});
   }
 
+  toLogin(){
+    window.history.replaceState(null,"Login","/login");
+    window.history.go();
+  }
   async handleSubmit(){
 	  
 	  let data = {
@@ -106,6 +110,8 @@ class Register extends Component {
                       <Input type="password" placeholder="Repeat password" autoComplete="new-password" />
                     </InputGroup>
                     <Button color="success" type="submit" disabled={this.state.carregando}  onClick={this.handleSubmit} block>Criar conta</Button>
+                      <Button color="secondary"  disabled={this.state.carregando} onClick={this.toLogin} block>Cancelar</Button>
+                    
                   </Form>
                 </CardBody>
                 

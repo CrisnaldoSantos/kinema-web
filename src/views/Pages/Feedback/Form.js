@@ -17,8 +17,7 @@ export default class FilmesAssistidosForm extends Component {
       watched_flag:false,
       genre_id: "1",
       genres:[],
-      carregando: false,
-      modal:true,
+      carregando: false
     };
     this.handleChange=this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -85,11 +84,11 @@ export default class FilmesAssistidosForm extends Component {
             <Col >
               <CardGroup>
                 <Card>
-                <CardHeader><h2>Cadastrar filme desejado <i class="fa fa-video-camera" aria-hidden="true"></i></h2></CardHeader>
+                <CardHeader><h2>Feedback <i class="fa fa-video-camera" aria-hidden="true"></i></h2></CardHeader>
                   <CardBody>
                     <Form>
                       <Row>
-                        <Col lg="12">
+                        <Col lg="8">
                           <Label for="title"><h6>Título do filme:</h6></Label>
                           <InputGroup className="mb-3">
                               <InputGroupAddon addonType="append">
@@ -97,7 +96,14 @@ export default class FilmesAssistidosForm extends Component {
                               <Input type="text"  id="title" value={this.state.title} onChange={(e) => this.handleChange(e, 'title')}/>
                             </InputGroup>
                           </Col>
-                          
+                          <Col lg="4">
+                          <Label for="debut-date"><h6>Data de estréia: (Opcional)</h6></Label>
+                          <InputGroup className="mb-3">
+                              <InputGroupAddon addonType="append">
+                              </InputGroupAddon>
+                              <Input type="date" placeholder="Data de estréia" id="debut-date" value={this.state.debut_date} onChange={(e) => this.handleChange(e, 'debut_date')}/>
+                            </InputGroup>
+                          </Col>
                       </Row>
                       <Row>
                         <Col lg="4">
