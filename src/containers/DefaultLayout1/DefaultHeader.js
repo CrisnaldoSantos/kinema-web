@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { /*AppAsideToggler,*/ AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 /*import logo from '../../assets/img/brand/logo.svg'*/
 import logokinema from '../../img/Logo Kinema.png'
-import sygnet from '../../assets/img/brand/sygnet.svg'
-
+//import sygnet from '../../assets/img/brand/sygnet.svg'
+import sygnet from '../../img/favicon-32x32.png'
 const propTypes = {
   children: PropTypes.node,
 };
@@ -15,6 +15,11 @@ const propTypes = {
 const defaultProps = {};
 
 class DefaultHeader extends Component {
+  changeRediret=()=>{
+    window.history.replaceState(null,"Trocar Senha","/changepassword/form");
+    window.history.go();
+  }
+
   render() {
 
     // eslint-disable-next-line
@@ -64,7 +69,7 @@ class DefaultHeader extends Component {
               <DropdownItem><i className="fa fa-usd"></i> Payments<Badge color="secondary">42</Badge></DropdownItem>
               <DropdownItem><i className="fa fa-file"></i> Projects<Badge color="primary">42</Badge></DropdownItem>
               <DropdownItem divider />*/}
-              <DropdownItem><i className="fa fa-shield"></i> Alterar Senha</DropdownItem>
+              <NavLink to="/changepassword/form"><DropdownItem><i className="fa fa-shield"></i> Alterar Senha</DropdownItem></NavLink>
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Sair</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

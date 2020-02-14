@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Label, Button, Card, CardBody, Col, Container, 
-    Row, CardHeader, CardFooter, Modal, ModalBody, ModalFooter, ModalHeader, FormGroup, Input  } from 'reactstrap';
+    Row, CardHeader, CardFooter, Modal, ModalBody,  ModalHeader, FormGroup, Input  } from 'reactstrap';
 import api from '../../../services/api';
 import header from '../../../services/header';
 import alertSW from '../../../util/sweetAlerts';
@@ -19,7 +19,7 @@ export default class FilmesDesejadosList extends Component {
           page:1,
           lastpage:1,
           modal:false,
-          rattings_id:"1",
+          rattings_id:"3",
           observations:"",
           movieid_modal:"",
         };
@@ -101,7 +101,7 @@ export default class FilmesDesejadosList extends Component {
 
     resetStatesFeedback = () =>{
         this.setState({
-            rattings_id:"1",
+            rattings_id:"3",
             observations:""
         })
     }
@@ -195,17 +195,16 @@ export default class FilmesDesejadosList extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-            </ModalBody>
-            <ModalFooter>
-                <Row>
-                    <Col lg="6" md="6" sm="12">
-                        <Button color="success" onClick={this.registerFeedback}>Continuar</Button>            
+            
+                <Row className="justify-content-center mt-1">
+                    <Col lg="4" md="6" sm="12" className="mb-2">
+                        <Button color="success" block onClick={this.registerFeedback}>Continuar</Button>            
                     </Col>
-                    <Col lg="6" md="6" sm="12">
-                        <Button color="danger" onClick={this.modalCancel}>Cancelar</Button>
+                    <Col lg="4" md="6" sm="12">
+                        <Button color="danger" block onClick={this.modalCancel}>Cancelar</Button>
                     </Col>
                 </Row>
-            </ModalFooter>
+            </ModalBody>
           </Modal>
             <Row>
                 <Col lg="8" sm="12">

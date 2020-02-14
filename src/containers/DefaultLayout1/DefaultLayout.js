@@ -31,6 +31,7 @@ class DefaultLayout extends Component {
   signOut(e) {
     e.preventDefault()
     localStorage.removeItem("kinema-token");
+    localStorage.removeItem("kinema-email");
     //this.props.history.push('/login')
     window.history.replaceState(null,"Login","/login");
     window.history.go();

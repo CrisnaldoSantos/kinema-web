@@ -45,7 +45,7 @@ class Login extends Component {
     })
     
 	  await api.post('/authenticated',data.userData,header).then(function(response){
-		  
+		  localStorage.setItem("kinema-email",data.userData.email);
       localStorage.setItem("kinema-token",response.data.token);
       window.history.replaceState(null,"Filmes desejados","/filmesdesejados/list");
       window.history.go();
